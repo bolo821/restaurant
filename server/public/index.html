@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link href="./1.css" rel="stylesheet">
+   
+   <script src="./ajex.js"></script> 
+   <script src="./app1.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+   <link rel="stylesheet" href="./2.css">
+   <style>
+               input {
+         background-color: rgb(212, 199, 199);
+         box-sizing: border-box;
+         border: 0px solid rgb(110, 102, 102);
+
+         outline: none;
+         font-weight: 600; font-size: 20px;
+         width: 80%;
+         
+         }
+         .form-control{
+            font-weight: 600; font-size: 20px;background-color: #ffffff;
+         }
+
+         input:disabled {
+         border: 0px solid rgb(255, 255, 255);
+         background-color: rgb(255, 255, 255);
+         width: 80%;
+        
+      
+         }
+         h5{
+         margin-bottom: 0;padding-top: 4px;
+         }
+         textarea{
+         font-weight: 600; font-size: 20px;
+         background-color: rgb(214, 202, 202);
+         box-sizing: border-box;
+         border: 0px solid rgb(216, 205, 205);
+         outline: none;
+         width: 80%;
+         }
+         textarea:disabled{
+         border: 0px solid rgb(255, 255, 255);
+         background-color: #ffffff;
+         width: 80%;
+
+         }
+   </style>
+
+</head>
+<body style="align-content: center; display: flex; justify-content: center;">
+   <div class="container m-5"style="height: 530px;">
+      <div class="row container">
+         <div class="col-sm-2 p-0">
+               <button type="button" class="btn border border-primary w-100 bg-primary  text-white" style="height: 130px;"onclick="Logo()"><h1 class="">LOGO</h1></button>
+               <button type="button" onclick="recordfromJson()" class="border border-primary w-100 bg-primary btn  text-white mt-5" style="height: 60px; "><h3 class="">Records</h3></button>
+               <button type="button" onclick="employfromJson()" class="border border-primary w-100 bg-primary btn text-white mt-2" style="height: 60px;"><h3 class="">Employees</h3></button>
+               <div class=" row  mt-2  px-2 bodyemp" style="height: 60px;display: none;">
+                  <div class="col " style="padding-left: 5px; padding-right: 5px;"><button class=" w-100 h-100 btn text-white "style="border:none;background-color:#B8860B;font-size:20px;"onclick="Modify()" id="modifye"> Modify</button></div>
+                  <div class="col " style="padding-right: 5px; padding-left: 5px;"><button class="w-100 h-100 btn text-white buttonem " disabled style="border:none; background-color:#008000;font-size:20px;opacity:0.6;" onclick="Save()"id="savee">Save</button></div>
+               </div>
+               <div class=" row  mt-2  px-2 bodyemp" style="height: 60px; display: none; ">
+                  <div class="col " style="padding-left: 5px; padding-right: 5px;"><button class=" w-100 h-100  btn text-white buttonem"disabled style="border:none;background-color:#8B0000;font-size:20px; opacity:0.6;"onclick="Delete()" id="deletee">Delete</button></div>
+                  <div class="col " style="padding-right: 5px; padding-left: 5px;"><button class="w-100 h-100 btn text-white buttonem"disabled style="border:none; background-color:#00CED1;font-size:20px; opacity:0.6;"onclick="Add()"id="adde">Add</button></div>
+               </div>
+               <div class=" row  mt-2  px-2 bodyrec" style="height: 60px;display: none;">
+                  <div class="col " style="padding-left: 5px; padding-right: 5px;"><button class=" w-100 h-100 btn text-white " style="border:none;background-color:#B8860B;font-size:20px;"onclick="Modify1()"id="modifyr" > Modify</button></div>
+                  <div class="col " style="padding-right: 5px; padding-left: 5px;"><button class="w-100 h-100 text-white buttonre"disabled style="border:none; background-color:#008000;font-size:20px; opacity:0.6;"onclick="Save1()"id="saver">Save</button></div>
+               </div>
+               <div class=" row  mt-2  px-2 bodyrec" style="height: 60px; display: none; ">
+                  <div class="col " style="padding-left: 5px; padding-right: 5px;"><button class=" w-100 h-100 btn text-white buttonre"disabled style="border:none;background-color:#8B0000;font-size:20px; opacity:0.6;"onclick="Delete1()" id="deleter">Delete</button></div>
+                  <div class="col " style="padding-right: 5px; padding-left: 5px;"><button class="w-100 h-100 btn text-white buttonre"disabled style="border:none; background-color:#00CED1;font-size:20px; opacity:0.6;"onclick="Add1()"id="addr">Add</button></div>
+               </div>
+   
+         </div>
+         <div class="col-sm-10 px-5 bodyrec" style="display: none;">
+            <div class="row mt-2 mx-0">
+               <div class="col-sm-7 p-0">
+                 <h3>Record Detail</h3>
+               </div>
+              
+            </div>
+            <div class="row bg-primary w-100" style="height: 30px;"></div>
+            <div class="row">
+               <div class="col-sm-1 ">
+               <h5>ID:</h5>
+               </div>
+               <div class="col-sm-2"><input class="form-control" type="text"id="rec1"disabled value=""></div>
+            </div>
+            <div class="row">
+               <div class="col-sm-1"><h5>Date:</h5></div>
+               <div class="col-sm-2"><input class="form-control" type="text"id="rec2"disabled value=""></div>
+               <div class="col-sm-2" style="padding-left: 60px; padding-right: 0%;"><h5>Author:</h5></div>
+               <div class="col-sm-3"><input class="form-control" type="text"id="rec3"disabled value="" ></div>
+            </div>
+            <div class="row mt-4">
+               <div class="col-sm-3"><h5>Record Name:</h5></div>
+               <div class="col-sm-4"><input class="form-control" type="text"id="rec4"disabled value=""></div>
+            </div>
+            <div class="row mt-4">
+               <div class="col-sm-1"><h5>Text</h5></div>
+            </div>
+            <div class="row">
+               <div class="col-sm-12">
+               <textarea name="text" class="form-control" id="rec5"disabled cols="30" rows="2"></textarea>
+            </div>
+            </div>
+            <div class="row mt-4 pt-3">
+               <div class="col-sm-2"><h5>Relation:</h5></div>
+               <div class="col-sm-4 "><input  class="form-control"style="font-size:20px; font-weight:600;" list="browsers" name="browser"id="rec6"disabled value="">
+                  <datalist id="browsers">
+                   
+                   </datalist>
+               </div>
+               <div class="col-sm-6">
+                 
+               </div>
+              <div class="container px-5">
+                  <div style="float: right;">
+                     <button type="button" onclick="Backr()" style="color:black; background: none; border: none;" ><h5><b>&#8810;</b>Back to overview</h5></button>                   
+                  </div>
+            </div>
+           
+         </div>
+      </div>
+      <div class="col-sm-10 px-5  bodyemp" style="display: none;">
+         <div class="row mt-2 mx-0">
+            <div class="col-sm-7 p-0">
+              <h3>Person Detail</h3>
+            </div>
+            
+         </div>
+         <div class="row bg-primary w-100" style="height: 30px;"></div>
+         <div class="row mt-4">
+            <div class="col-sm-4 ps-4">
+               <img src="" alt=""id="emp9" style=" max-width: 100%; height: auto;"> 
+               <button class="btn btn-dark w-100" onclick="link()"id="directory" style="display: none;">Directory</button>                   
+               <form id="upload-form"enctype="multipart/form-data" style="display: none;">
+                  
+                      <input type="file" id="file" name="fileName" style="display: none;"/>
+                      
+                      <input type="submit" value="Submit" class="btn btn-dark w-100 mt-1" />
+                      <progress class="progress w-100" value="0" max="100"></progress>               
+              </form>                                                       
+            </div>
+            <div class="col-sm-8">
+               <div class="row mt-1">
+                  <div class="col-sm-4 "><h5 style="margin-bottom: 0;padding-top: 4px;">Name:</h5></div>
+                  <div class="col-sm-8"><input type="text"id="emp1"disabled class="form-control" value="" autocomplete="false"></div><div style="display: none;"><input type="number" id="emp0" value=""></div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-4"><h5 style="margin-bottom: 0;padding-top: 4px;">Middle name:</h5></div>
+                  <div class="col-sm-8"><input type="text"id="emp2"disabled class="form-control" value="" ></div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-4"><h5 style="margin-bottom: 0;padding-top: 4px;">Surname:</h5></div>
+                  <div class="col-sm-8"><input type="text"id="emp3"disabled class="form-control" value=""></div>
+               </div>
+               <div class="row ">
+                  <div class="col-sm-4"><h5 style="margin-bottom: 0;padding-top: 4px;">Date of Birth:</h5></div>
+                  <div class="col-sm-8"><input type="text"id="emp4"disabled class="form-control" value=""></div>
+               </div>
+               <div class="row ">
+                  <div class="col-sm-4"><h5 style="margin-bottom: 0;padding-top: 4px;">Nationality:</h5></div>
+                  <div class="col-sm-8"><input type="text"id="emp5"disabled class="form-control" value="" ></div>
+               </div>
+
+            </div>
+         </div>
+         <div class="container mt-2">
+            <div class="row">
+               <div class="col-sm-3 ps-4"><h5 style="margin-bottom: 0;padding-top: 4px;">Contact phone:</h5></div>
+               <div class="col-sm-9"><input type="text"id="emp6"disabled class="form-control" value=""></div>
+            </div>
+            <div class="row">
+               <div class="col-sm-3 ps-4"><h5 style="margin-bottom: 0;padding-top: 4px;">Contact Address:</h5></div>
+               <div class="col-sm-9"><input type="text"id="emp7"disabled class="form-control" value=""></div>
+            </div>
+            <div class="row mt-3">
+               <div class="col-sm-3 ps-4"><h5>Records:</h5></div>
+               <div class="col-sm-9"><h5></h5></div>
+            </div>
+            <div class="row">
+               <div class="col-sm-3 ps-4"><input type="text"id="emp8"disabled value=""class="form-control" style="width: 150px;"></div>
+               <div class="col-sm-9"></div>
+            </div>
+            <div class="container px-5">
+               <div style="float: right;">
+                  <button type="button" onclick="Backe()" style="color:black; background: none; border: none;" ><h5><b>&#8810;</b>Back to overview</h5></button>                   
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-sm-10 px-5 body1"  >
+         <div class="row mt-2 mx-0" id="emheader" style="display: none;">
+            <div class="col-sm-7 p-0">
+            <h2 ><span id="re">Employees</span></h2>
+         </div>
+         <div class="container col-sm-5 p-0">
+            <div class="d-flex flex-fill p-0 m-0 " style="float: right;">
+               <div class="mb-0 mt-2 pe-2 align-self-sm-strech" ><p style="font-size: 20px;"> search</p></div>
+               <div class=" px-0 pt-1 align-self-sm-strech">
+                  <input type="text" onkeyup="myFunction()" id="myInput" style="float:right;width: 100%; height: 40px; background-color: #7bbbf6;">
+               </div>
+            </div>
+         </div>
+
+         </div>
+
+         <div id="data"  class="" style="height: 450px; overflow-y: auto;"  ></div>
+
+      </div> 
+   </div>
+</div>
+
+</body>
+
+</html>
