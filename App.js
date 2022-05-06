@@ -36,6 +36,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {restaurant,search} from './data.js'
+import storage1  from './firebase';
 const Stack = createNativeStackNavigator();
 const data= restaurant
 const data1=search
@@ -394,6 +395,26 @@ const Client_4=({navigation,route})=>{
 }
 
 const Client_1=({ navigation })=>{
+  const [image, setImage] = useState([])
+  const dat = []
+  useEffect(()=>{
+            const fetchImage1 = async () => { 
+                let arr = ["Icon1.png","Untitled-1.png","Untitled-2.png","Untitled-3.png","Untitled-3.png","Untitled-4.png","Untitled-5.png","Untitled-6.png","Untitled-7.png","Untitled-8.png","Untitled-9.png","Untitled-10.png","Untitled-11.png","Untitled-12.png","Untitled-13.png","Untitled-14.png","Untitled-15.png","Untitled-16.png","Untitled-17.png"];
+                for (let i=0; i<dat.length; i++) {
+                    
+                        let name = await storage.ref().child(`asset/${dat[i]}`).getDownloadURL();  
+                        arr.push({
+                            name: dat[i],
+                            url: name
+                        })
+                    
+                }
+                setImage(arr)   
+                
+            };
+            fetchImage1();
+        },[])
+        console.log(image)
   const isDarkMode = useColorScheme() === 'dark';
   const [msg, setMsg] = useState('');
   const anotherFunc = (val) =>{

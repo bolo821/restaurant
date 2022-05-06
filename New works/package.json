@@ -1,5 +1,5 @@
 {
-  "name": "AwesomeProj",
+  "name": "React_Native_basic",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -12,14 +12,13 @@
   "dependencies": {
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.1",
-    "apisauce": "^2.1.5",
-    "firebase": "^8.2.3",
+    "firebase": "^9.7.0",
     "react": "17.0.2",
     "react-native": "0.68.1",
-    "react-native-router-flux": "^4.3.1",
+    "react-native-geolocation-service": "^5.3.0-beta.4",
+    "react-native-maps": "^0.31.0",
     "react-native-safe-area-context": "^4.2.4",
     "react-native-screens": "^3.13.1",
-    "react-native-textinput-with-icons": "^1.0.18",
     "react-native-vector-icons": "^9.1.0"
   },
   "devDependencies": {
